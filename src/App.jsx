@@ -10,7 +10,9 @@ function App() {
     setinput(e.target.value)
   }
 const show=(data)=>{
+
 // console.log(data)
+
 let list=data.list
 list.forEach((el,i)=>{
   if(i==0){
