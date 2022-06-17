@@ -11,7 +11,7 @@ function App() {
   }
 const show=(data)=>{
 
-// console.log(data)
+console.log(data)
 
 let list=data.list
 list.forEach((el,i)=>{
@@ -24,7 +24,6 @@ let div=document.createElement("div");
     console.log(list[i-1])
   }
 })
-
 
 }
 
