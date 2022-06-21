@@ -6,7 +6,7 @@ import  {CurrentLocation}  from '../components/currentlocation'
 
 function App() {  
   const [input,setinput]=useState();
-
+const[data,setData]=useState();
   const handle=(e)=>{
     setinput(e.target.value)
   }
@@ -15,7 +15,7 @@ function App() {
   const fetchapi=()=>{ //city wise
     fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${input}&appid=${key}`)
     .then(res=>res.json())
-    .then(data=>console.log(data))
+    .then(data=>setData(data))
   }
  
   return (
@@ -24,7 +24,7 @@ function App() {
       <input className="input_box" type="text" onChange={handle}/>
       <IconButton onClick={fetchapi} aria-label='Search database' colorScheme='blackAlpha' icon={<SearchIcon />} />
       </div>
-      <CurrentLocation prop={key}/>
+      <CurrentLocation prop={key} days={data}/>
     </div>
   )
 }
