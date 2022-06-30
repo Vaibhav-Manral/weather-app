@@ -4,12 +4,13 @@ import { useEffect } from 'react';
 import '../src/App.css'
 
 export const CurrentLocation=(p)=>{ 
+  // console.log(p.days)
 const[list,setlist]=useState([]);
-
 
 useEffect(()=>{
     getlocation();
   },[])
+
 const getlocation=()=>{ //current location
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition);
@@ -24,23 +25,38 @@ const showPosition=(position)=>{ //current location
     .then(res=>res.json())
     .then(data=>show(data)) 
     .catch(err=>console.log(err))
-  }
-  
+  } 
   const show=(data)=>{
     setlist(data.list)
     console.log("Current Location",data.list)
   }
-
-// if(p.days!=undefined)
-// {
-//   setlist(p.days.list)
-//   console.log(list)
-// }
-//   }
-  
+if(p.days!=undefined){
+  console.log(p.days)
+}
 return(
 <div className="forecast">
-{
+  <div className='_iforecast'>
+
+  </div>
+  <div className='_iforecast'>
+
+</div>
+<div className='_iforecast'>
+
+</div>
+<div className='_iforecast'>
+
+</div>
+<div className='_iforecast'>
+
+</div>
+<div className='_iforecast'>
+
+</div>
+<div className='_iforecast'>
+
+</div>
+{/* {
 list.map((el,i)=>{
   if(i%8==0){
   return(
@@ -51,8 +67,7 @@ list.map((el,i)=>{
     <p className='pimage'><img src={`https://openweathermap.org/img/w/${el.weather[0].icon}.png`} /></p>
 </div>
   )
-}})
-} 
+}}) */}
 </div>
 )
 }
