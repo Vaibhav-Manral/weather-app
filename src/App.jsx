@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import  {CurrentLocation}  from '../components/currentlocation'
+import Graph from '../components/Graph';
+import Pin from '../Images/pin.png'
+import Search from '../Images/search.png'
 
 function App() {  
   const [input,setinput]=useState();
-const[data,setData]=useState();
+  const[data,setData]=useState();
   
   let key="1afee05f35f4bbefee24aa8566dc0af7";
 
@@ -20,10 +23,14 @@ const[data,setData]=useState();
     <div className="App">
       <div className="_flex">
       <input className="input_box" placeholder='search' type="text" onChange={fetchapi}/>
-      <img className="Location_img"src="https://weatherapp-gules-one.vercel.app/static/media/pin.0e41858db80c699cd8a2.png"/>
-      <img className="Search_img" src="https://weatherapp-gules-one.vercel.app/static/media/search.1d92f967297920015306.png"/>
+      <img className="Location_img"src={Pin}/>
+      <img className="Search_img" src={Search}/>
       </div>
       <CurrentLocation prop={key} days={data}/>
+      <div className='Graph_div'>
+      <Graph/>
+      </div>
+      
     </div>
   )
 }
