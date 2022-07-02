@@ -2,6 +2,10 @@ import { useState } from 'react';
 import { useRef } from 'react';
 import { useEffect } from 'react';
 import '../src/App.css'
+import sunny from '../Images/sunny.png';
+import rainy from '../Images/rainy.png';
+import cloudy from '../Images/cloudy.png';
+
 
 export const CurrentLocation=(p)=>{ 
   // console.log(p.days)
@@ -37,12 +41,21 @@ return(
 <div className="forecast">
 {
 list.map((el,i)=>{
+  // console.log(el.dt)
+  const dateTimeStr = new Date(el.dt*1000).toLocaleString("en-US",{weekday:"long"}).slice(0,3);
+  
+  // console.log(d)
   return(
-  <div key={i} className="_iforecast">
-    {/* <h1>{el.dt_txt}</h1> */}
-    <span className="span">max {el.temp.max}</span>
-    <span className="span"> min {el.temp.min}</span>
-    
+<div key={i} className="_iforecast">
+  <div className='Weather_info'>
+    <p className="weekdays">{dateTimeStr}</p>
+    <span className="span">{el.temp.max.toFixed()}&deg;</span>
+    <span className="span">{el.temp.min.toFixed()}&deg;</span>
+    </div>
+    <div className="Weather_image">
+    <img className="image" src={(el.weather[0].main=="Clear")?sunny:(el.weather[0].main=="Rain")?rainy:cloudy}/>
+    <p className='Weather_status'>{el.weather[0].main}</p>
+      </div>
 </div>
   )
 })}

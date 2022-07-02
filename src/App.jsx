@@ -4,6 +4,7 @@ import  {CurrentLocation}  from '../components/currentlocation'
 import Graph from '../components/Graph';
 import Pin from '../Images/pin.png'
 import Search from '../Images/search.png'
+import LowerGraph from '../components/LowerGraph';
 
 function App() {  
   const [input,setinput]=useState();
@@ -27,9 +28,21 @@ function App() {
       <img className="Search_img" src={Search}/>
       </div>
       <CurrentLocation prop={key} days={data}/>
-      <div className='Graph_div'>
+      <div className='GraphDiv'>
+        <div className="TempInfo">
+
+        </div>
       <Graph/>
+      <div className='TempDetails'>
+
       </div>
+      <div className='TempDetails1'>
+
+      </div>
+      <LowerGraph/>
+      </div>
+      
+     
       
     </div>
   )

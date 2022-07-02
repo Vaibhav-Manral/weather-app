@@ -1,7 +1,7 @@
 .App {
-  width:700px;
+  width:800px;
   margin-left:25%;
-  height:750px;
+  height:1250px;
   border:1px solid red
 }
 .input_box{
@@ -35,31 +35,92 @@
   top:16px;
   right:20px;
 }
-.Graph_div{
+/* .Graph_div{
   width:100%;
-  height:540px;
-  border:1px solid violet
-}
+  height:60%;
+  border:1px solid greenyellow;
+} */
 .forecast{
-  border:1px solid green;
-  width: 700px;
-  height:150px;
+  border:1px solid blueviolet;
+  width: 100%;
+  height:190px;
   overflow-x: scroll;
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
   white-space: nowrap;
+  margin-top: 2%;
 }
 ._iforecast{
-  border: 1px solid blue;
+  border: 1px solid purple;
   display: inline-block; 
-  width:300px;
-  height:130px; 
+  width:110px;
+  height:88%; 
+  text-align: center;
+}
+.Weather_info{
+  border: 1px solid red;
+  width:100%;
+  height:40%;
+}
+.weekdays{
+  border:1px solid green;
+  width:100%;
+  height:20px;
+  color: #2a2c2e;
+  font-family: sans-serif;
+  font-weight: bold;
 }
 .span{
-  font-size: 15px;
-  font-weight: 600;
+  display: inline-block;
+  font-family: sans-serif;
+  font-size: 100%;
+  font-weight: bold;
+  color:#2a2c2e;
+  color: #2a2c2e;
+  border: 1px solid blueviolet;
+  position: relative;
+  top:-14px;
+  padding-right: 7%;
 }
-.pimage{
+.Weather_image{
+border: 1px solid blue;
+width:100%;
+height:59%;
+}
+.image{
+  height:55%;
+  width:30%;
+}
+.Weather_status{
+  border: 1px solid blueviolet;
+  font-family: sans-serif;
+  font-weight: 700;
+  color:#2a2c2e;
+}
+.app{
+    overflow-x: scroll;
+    overflow-y: scroll;
+    border:1px solid green;
+}
+.GraphDiv{
+  border :1px solid gold;
+  width: 100%;
+  height:79%;
+  box-shadow: 0 8px 10px -3px rgb(0 0 0 / 10%), 0 4px 6px -2px rgb(0 0 0 / 10%), 0 -8px 12px 0 rgb(0 0 0 / 5%), 0 -2px 3px -2px rgb(0 0 0 / 1%);
+}
+.TempInfo{
+  border:1px solid chartreuse;
+  width:100%;
+  height:8%;
+}
+.LowerGraph1{
+border:1px solid goldenrod;
+padding-left: 5%;
+}
+.TempDetails{
+  border:1px solid greenyellow;
+  height:9%
+}
+.TempDetails1{
   border:1px solid red;
-  width:80%;
-  margin-left:10%;
+  height:9%
 }
