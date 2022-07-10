@@ -1,11 +1,10 @@
 import React from "react";
 import Chart from "react-apexcharts";
-import "../src/App.css";
+import "../App.css";
 function Graph() {
     var obj = {
       options: {
         chart: {
-          id: "basic-bar",
           zoom:{
             enabled:false
           }
@@ -14,7 +13,7 @@ function Graph() {
           curve: 'smooth',
         },
         xaxis: {
-          categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
+          categories: [1, 2, 3, 4, 5, 6, 7, 8,9,10,11]
         },
         dataLabels: {
           enabled: false
@@ -23,7 +22,7 @@ function Graph() {
       series: [
         {
           name: "series-1",
-          data: [30, 40, 45, 50, 49, 60, 70, 91]
+          data: [30, 40, 45, 50, 49, 60, 70, 91,100,111,123]
         }
       ],
 
@@ -37,6 +36,7 @@ function Graph() {
               series={obj.series}
               type="area"
               width="100%"
+              align="center"
             />
           </div>
         </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import Chart from "react-apexcharts";
-import "../src/App.css";
+import "../App.css";
+
 function LowerGraph() {
     var obj = {
         series: [{
@@ -44,7 +45,7 @@ function LowerGraph() {
               options={obj.options}
               series={obj.series}
               type="area"
-              width="99%"
+              width="100%"
               height={190}
             />
           </div>
