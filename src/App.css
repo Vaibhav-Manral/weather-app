@@ -1,8 +1,8 @@
 .App {
   width:800px;
   margin-left:25%;
-  height:1250px;
-  border:1px solid red
+  height:1255px;
+  border:1px solid red;
 }
 .input_box{
   border-color: #f5f5f5;
@@ -100,7 +100,8 @@ height:59%;
     overflow-x: scroll;
     overflow-y: scroll;
     border:1px solid green;
-    width: 98%;
+    width: 96%;
+    margin-left:2%;
 }
 .GraphDiv{
   border :1px solid black;
@@ -118,14 +119,47 @@ border:1px solid violet;
   height:8%;
 }
 .LowerGraph1{
-border:1px solid goldenrod;
+border:1px solid navy;
 padding-left: 5%;
+height:18%;
 }
+/* .LowerGraph3{
+  height:50%;
+} */
 .TempDetails{
   border:1px solid greenyellow;
-  height:9%
+  height:9%;
+  display:flex;
+  gap:2%;
+  margin-top:4%;
+  /* position:relative; */
 }
 .TempDetails1{
   border:1px solid red;
   height:9%
+}
+.Pressure{
+  height: 80%;
+  width:46.5%;
+  background-color: #F3FBFF;
+  font-family: sans-serif;
+  padding-left: 1%;
+  font-weight: 600;
+  margin-left: 1.7%;
+  
+}
+.Humidity{
+  height:80%;
+  width:46%;
+  background-color: #F3FBFF;
+  font-family: sans-serif;
+  padding-left: 1%;
+  font-weight: 600;
+  
+}
+.Pressure_info{
+  font-weight: 300;
+}
+.Humidity_info{
+  font-weight: 300;
 }

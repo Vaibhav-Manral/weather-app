@@ -11,6 +11,7 @@ import { createContext } from 'react';
 import { useContext } from 'react';
 import Graph from './Graph';
 import LowerGraph from './LowerGraph';
+import { useRef } from 'react';
 
 
 // export const Weatherdata=createContext();
@@ -19,7 +20,14 @@ import LowerGraph from './LowerGraph';
 export const CurrentLocation=(p)=>{ 
   // console.log(p.days)
  const[list,setlist]=useState([]);
+ 
 
+//  const [info,setInfo]=useState();
+const info=useRef();
+const Pressure=useRef();
+const Humidity=useRef();
+const sunrise=useRef();
+const sunset=useRef();
 useEffect(()=>{
   getlocation();
   },[])
@@ -48,15 +56,20 @@ const showPosition=(position)=>{ //current location
   }
 return(
   <div className='App'>
-  <div className="_flex">
-  <input className="input_box" placeholder='search' type="text"/>
-  <img className="Location_img"src={Pin}/>
-  <img className="Search_img" src={Search}/>
-</div>
+     <div className="_flex">
+        <input className="input_box" placeholder='search' type="text"/>
+        <img className="Location_img"src={Pin}/>
+        <img className="Search_img" src={Search}/>
+     </div>
 <div className="forecast">
 {
 list.map((el,i)=>{
-  // console.log(el.dt)
+  if(i==0){
+ info.current=`${el.temp.max.toFixed()}`;
+ Pressure.current=`${el.pressure}`;
+ Humidity.current=`${el.humidity}`;
+
+  }
   const dateTimeStr = new Date(el.dt*1000).toLocaleString("en-US",{weekday:"long"}).slice(0,3);
   
   // console.log(d)
@@ -77,10 +90,24 @@ list.map((el,i)=>{
 </div>
 <div className='GraphDiv'>
         <div className="TempInfo">
-
+{info.current}
         </div>
       <Graph/>
       <div className='TempDetails'>
+
+<div className='Pressure'>
+<p>
+  Pressure<br/>
+<span className='Pressure_info'>{Pressure.current} hpa</span>
+</p>
+</div>
+
+<div className='Humidity'>
+<p>
+  Humidity<br/>
+<span className='Humidity_info'>{Humidity.current}%</span>
+</p>
+</div>
 
       </div>
       <div className='TempDetails1'>
