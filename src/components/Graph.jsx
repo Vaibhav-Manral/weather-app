@@ -36,7 +36,7 @@ function Graph() {
               series={obj.series}
               type="area"
               width="100%"
-              align="center"
+              // align="center"
             />
           </div>
         </div>

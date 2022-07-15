@@ -10,6 +10,7 @@ function LowerGraph() {
           options: {
                 colors:["#FEE266"],
             grid: {
+
                 show:false
               },
             dataLabels: {
@@ -24,17 +25,19 @@ function LowerGraph() {
               curve: 'smooth'
             },
             xaxis: {
+              colors:["#FEE266"],
               categories: ["5am","2pm","6pm"]
+              
             },
             yaxis:{
                 show:false
               },
-            tooltip: {
-            //   x: {
-            //     format: 'dd/MM/yy HH:mm'
-            //   },
+            // tooltip: {
+            // //   x: {
+            // //     format: 'dd/MM/yy HH:mm'
+            // //   },
               
-            },
+            // },
           },
         };    
     return (
