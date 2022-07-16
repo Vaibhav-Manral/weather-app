@@ -22,10 +22,10 @@ function LowerGraph() {
               }
             },
             stroke: {
-              curve: 'smooth'
+              curve: "smooth"
             },
             xaxis: {
-              colors:["#FEE266"],
+         
               categories: ["5am","2pm","6pm"]
               
             },
