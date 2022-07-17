@@ -140,7 +140,7 @@ list.map((el,i)=>{
             
           </div>
         </div>
-      <Graph/>
+      <Graph data={list}/>
       <div className='TempDetails'>
 
   <div className='Pressure'>

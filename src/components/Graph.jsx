@@ -1,7 +1,13 @@
 import React from "react";
+import { useState } from "react";
 import Chart from "react-apexcharts";
 import "../App.css";
-function Graph() {
+function Graph(p) {
+  const element=[];
+  p.data.map((el)=>{
+    element.push(el.temp.max.toFixed())
+  });
+
     var obj = {
       options: {
         chart: {
@@ -21,11 +27,10 @@ function Graph() {
       },
       series: [
         {
-          name: "series-1",
-          data: [30, 40, 45, 50, 49, 60, 70, 91,100,111,123]
+          name: "Temp",
+          data: element
         }
       ],
-
     };
     return (
       <div className="app">
