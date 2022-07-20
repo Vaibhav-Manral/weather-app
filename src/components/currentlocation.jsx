@@ -9,24 +9,22 @@ import Search from '../../Images/search.png'
 import Graph from './Graph';
 import LowerGraph from './LowerGraph';
 import { useRef } from 'react';
+import { cities } from '../../cities';
+
 
 export const CurrentLocation=(p)=>{ 
   // console.log(p.days)
- const[list,setlist]=useState([]);
- const [change,setchange]=useState();
- const [Toggle,setToggle]=useState(true);
- const [Maximum,setMaximum]=useState();
- const [Humidity,setHumidity]=useState();
- const [Pressure,setPressure]=useState();
+const [list,setlist]=useState([]);
+const [change,setchange]=useState();
+const [Toggle,setToggle]=useState(true);
+const [Maximum,setMaximum]=useState();
+const [Humidity,setHumidity]=useState();
+const [Pressure,setPressure]=useState();
 const [Sun,setSun]=useState();
 const [Rise,setRise]=useState();
-//  const [Obj,setObj]=useState({
-//   max:"",
-//   pressure:"",
-//   humidity:"",
-//   sunrise:"",
-//   sunset:""
-// });
+const [suggest,setsuggest]=useState(false);
+const [citiesdata,setcitiesdata]=useState([]);
+const [GraphData,setGraphdata]=useState({});
 const Obj={
   max:"",
   pressure:"",
@@ -35,14 +33,6 @@ const Obj={
   sunset:""
 }
 
-//  const [info,setInfo]=useState();
-// const info=useRef();
-// const Pressure=useRef();
-// const Humidity=useRef();
-// const sunrise=useRef();
-// const sunset=useRef();
-// const image=useRef();
-// const [image,setImage]=useState();
 useEffect(()=>{
   getlocation();
   },[])
@@ -54,61 +44,103 @@ const getlocation=()=>{ //current location
       console.log("NS")
     }
   }
-  
 
-const showPosition=(position)=>{ //current location
-    let lat=position.coords.latitude;
+const showPosition=(position)=>{      //current location
+  console.log(typeof(position))
+  console.log(position.coords)
+  let lat=position.coords.latitude;
     let lon=position.coords.longitude;
    
     fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${p.k}&units=metric`)
     .then(res=>res.json())
-    .then(data=>show(data)) 
+    .then(data=>show(data))
     .catch(err=>console.log(err))
   } 
-  const show=(data)=>{
+
+  const show=(data)=>{ //show data for current location when app launch
     setlist(data.daily)
+    console.log(data)
     console.log("Current Location",data.daily)
   }
 
     const update=(el,i)=>{
-      // console.log(el.temp.max.toFixed());
       setchange(i)
       setMaximum(el.temp.max.toFixed());
       setHumidity(el.humidity);
       setPressure(el.pressure);
 
-const R=  new Date(el.sunrise*1000).toLocaleTimeString('IST', {hour: '2-digit', minute: '2-digit'});
+const R =  new Date(el.sunrise*1000).toLocaleTimeString('IST', {hour: '2-digit', minute: '2-digit'});
 setRise(R); 
-const S=  new Date(el.sunset*1000).toLocaleTimeString('IST', {hour: '2-digit', minute: '2-digit'});
+const S =  new Date(el.sunset*1000).toLocaleTimeString('IST', {hour: '2-digit', minute: '2-digit'});
 setSun(S);
-     
-     setToggle(false);
-      
 
+     setToggle(false);
+    }
+
+
+
+    const Suggestions=(e)=>{ //suggestion box
+      console.log(e.target.value)
+      if(e.target.value!==""){
+
+    const data=cities.filter((element)=>{ //filter always return array elements
+  
+      if(element.city.includes(e.target.value[0].toUpperCase() || e.target.value[0].toLowerCase() || e.target.value))
+    {
+      return element
+    }
+
+})
+setcitiesdata(data)
+setsuggest(true)
+
+console.log(data) 
+}
+else if(e.target.value=="")
+{    
+  setsuggest(false)
+}
+    }
+
+    const Display=(el)=>{ // onclick on suggesstions call this function and api
+      fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${el.lat}&lon=${el.lng}&appid=${p.k}&units=metric`)
+      .then(res=>res.json())
+      .then(data=>show(data)) 
+      .catch(err=>console.log(err))
+      // console.log(GraphData)
+      setsuggest(false);
     }
 
 return(
   <div className='App'>
      <div className="_flex">
-        <input className="input_box" placeholder='search' type="text"/>
+        <input className="input_box" placeholder='Search' type="text" onChange={Suggestions}/>
         <img className="Location_img" src={Pin}/>
         <img className="Search_img" src={Search}/>
+     </div>
+     
+     <div className='suggest' style={{display:suggest?"block":"none"}}>
+     {
+     citiesdata.map((el,i)=>{
+      return(
+      <div key={i} className="citiesoptions" onClick={()=>Display(el)}>
+          {el.city},  <span>{el.state}</span>
+      </div>
+      )
+     })
+     }
+
      </div>
 <div className="forecast">
 {
 list.map((el,i)=>{
   if(i==0){
-
   Obj.max=el.temp.max.toFixed();
   Obj.pressure=el.pressure;
   Obj.humidity=el.humidity;
-  // image.current=el.weather[0].main;
   Obj.image=el.weather[0].main;
-  // console.log(image)
   Obj.sunrise=new Date(el.sunrise*1000).toLocaleTimeString('IST', {hour: '2-digit', minute: '2-digit'});
   Obj.sunset=new Date(el.sunset*1000).toLocaleTimeString('IST', {hour: '2-digit', minute: '2-digit'});
-  
-  // console.log(Obj.max)
 }
   const dateTimeStr = new Date(el.dt*1000).toLocaleString("en-US",{weekday:"long"}).slice(0,3);
   
@@ -124,6 +156,7 @@ list.map((el,i)=>{
     </div>
     <div className='Weather_status'>{el.weather[0].main}</div>
 </div>
+
   )
 })}
 </div>
@@ -175,6 +208,7 @@ list.map((el,i)=>{
     </div>
       <LowerGraph/>
       </div>
+     
 </div>
 )
 }

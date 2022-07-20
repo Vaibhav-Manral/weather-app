@@ -3,10 +3,15 @@ import { useState } from "react";
 import Chart from "react-apexcharts";
 import "../App.css";
 function Graph(p) {
+  console.log("api",p.data)
+  const temp=p.data;
+
   const element=[];
-  p.data.map((el)=>{
-    element.push(el.temp.max.toFixed())
-  });
+console.log("temp",temp)
+  temp.map((el,i)=>{
+    element.push(el.temp.max)
+    console.log("daily",el.temp.max)
+  })
 
     var obj = {
       options: {
@@ -19,7 +24,7 @@ function Graph(p) {
           curve: 'smooth',
         },
         xaxis: {
-          categories: [1, 2, 3, 4, 5, 6, 7, 8,9,10,11]
+          categories:[1,2,3,4,5,6,7,8]
         },
         dataLabels: {
           enabled: false

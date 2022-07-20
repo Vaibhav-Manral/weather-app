@@ -10,7 +10,6 @@ function LowerGraph() {
           options: {
                 colors:["#FEE266"],
             grid: {
-
                 show:false
               },
             dataLabels: {
@@ -25,9 +24,7 @@ function LowerGraph() {
               curve: "smooth"
             },
             xaxis: {
-         
               categories: ["5am","2pm","6pm"]
-              
             },
             yaxis:{
                 show:false
