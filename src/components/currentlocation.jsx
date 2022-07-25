@@ -24,7 +24,7 @@ const [Sun,setSun]=useState();
 const [Rise,setRise]=useState();
 const [suggest,setsuggest]=useState(false);
 const [citiesdata,setcitiesdata]=useState([]);
-const [GraphData,setGraphdata]=useState({});
+
 const Obj={
   max:"",
   pressure:"",
@@ -87,13 +87,13 @@ setSun(S);
   
       if(element.city.includes(e.target.value[0].toUpperCase() || e.target.value[0].toLowerCase() || e.target.value))
     {
+      
       return element
     }
 
 })
 setcitiesdata(data)
 setsuggest(true)
-
 console.log(data) 
 }
 else if(e.target.value=="")
@@ -109,6 +109,7 @@ else if(e.target.value=="")
       .catch(err=>console.log(err))
       // console.log(GraphData)
       setsuggest(false);
+      setToggle(true)
     }
 
 return(
@@ -135,15 +136,17 @@ return(
 {
 list.map((el,i)=>{
   if(i==0){
+    
   Obj.max=el.temp.max.toFixed();
   Obj.pressure=el.pressure;
   Obj.humidity=el.humidity;
   Obj.image=el.weather[0].main;
   Obj.sunrise=new Date(el.sunrise*1000).toLocaleTimeString('IST', {hour: '2-digit', minute: '2-digit'});
   Obj.sunset=new Date(el.sunset*1000).toLocaleTimeString('IST', {hour: '2-digit', minute: '2-digit'});
+
 }
+
   const dateTimeStr = new Date(el.dt*1000).toLocaleString("en-US",{weekday:"long"}).slice(0,3);
-  
   return(
 <div key={i} className={change===i ? "_iforecast1":"_iforecast"} onClick={()=>{update(el,i)}}>
   <div className='Weather_info'>

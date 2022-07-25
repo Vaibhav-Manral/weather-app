@@ -7,7 +7,9 @@ function Graph(p) {
   const temp=p.data;
 
   const element=[];
+  
 console.log("temp",temp)
+
   temp.map((el,i)=>{
     element.push(el.temp.max)
     console.log("daily",el.temp.max)
